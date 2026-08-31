@@ -196,7 +196,7 @@ public class GrpcIoServiceBridgeImpl implements GrpcIoServiceBridge {
     void init(ServerCall.Listener<Req> listener) {
       this.listener = listener;
       req.errorHandler(error -> {
-        if (error == GrpcError.CANCELLED && !closed) {
+        if (!closed) {
           cancelled = true;
           listener.onCancel();
         }
